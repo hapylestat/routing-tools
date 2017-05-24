@@ -24,4 +24,4 @@ for item in nets["data"]["bgp_state"]:
         prefixes_ipv4.append(item["target_prefix"])
 
 print("\n".join(prefixes_ipv4))
-print("\n".join(prefixes_ipv6))
+#print("\n".join(prefixes_ipv6))
