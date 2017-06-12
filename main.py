@@ -25,5 +25,6 @@ for item in nets["data"]["bgp_state"]:
     if "." in item["target_prefix"] and item["target_prefix"] not in prefixes_ipv4:
         prefixes_ipv4.append(item["target_prefix"])
 
+prefixes_ipv4.extend(nets_list)
 print("\n".join(prefixes_ipv4))
 #print("\n".join(prefixes_ipv6))
