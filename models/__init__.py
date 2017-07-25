@@ -6,6 +6,7 @@ class NetworkItem(ConfigObject):
     name = None
     as_list = []
     nets = []
+    optional = False
 
 
 class Networks(ConfigObject):

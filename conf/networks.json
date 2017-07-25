@@ -35,6 +35,14 @@
       "as_list": [
         "AS41983", "AS200107"
       ]
+    },
+    {
+      "name": "ncsoft",
+      "optional": true,
+      "as_list": [
+            "AS30588"
+          ],
+      "nets": []
     }
   ]
 }
