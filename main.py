@@ -31,26 +31,26 @@ def fetch_ripe_info(as_list):
     return None
 
 
-def filter_ipv4(l):
+def filter_ipv4(addr_list):
     """
-    :type l list[str]
+    :type addr_list list[str]
     :rtype list
     """
-    if not isinstance(l, (list, set)):
+    if not isinstance(addr_list, list):
         return None
 
-    return [i for i in l if "." in l]
+    return [item for item in addr_list if "." in item]
 
 
-def filter_ipv6(l):
+def filter_ipv6(addr6_list):
     """
-    :type l list[str]
+    :type addr6_list list[str]
     :rtype list
     """
-    if not isinstance(l, (list, set)):
+    if not isinstance(addr6_list, list):
         return None
 
-    return [i for i in l if ":" in l]
+    return [item for item in addr6_list if ":" in item]
 
 
 def generate_exclude_lists(nets, include_optional=True, make_query=True):
