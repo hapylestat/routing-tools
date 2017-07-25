@@ -97,9 +97,7 @@ def main():
     nets = Networks(serialized_obj=conf.get_module_config("networks"))
 
     option = conf.get("default")
-    inc_optional_nets = conf.get("optional", default=True, check_type=bool)
-
-    display_mode = DisplayOptions.IPV4
+    inc_optional_nets = conf.get("optional", default="true", check_type=str) == "true"
 
     if len(option) == 0 or option[0] == DisplayOptions.IPV4:
         display_mode = DisplayOptions.IPV4
@@ -108,7 +106,8 @@ def main():
     elif len(option) > 0 and option[0] == DisplayOptions.NETS:
         display_mode = DisplayOptions.NETS
     else:
-        print("Please use: {}, {}, {} to display respective information".format(
+        print("Please use: {}, {}, {} to display respective information with --optional argument\
+ to chose if optional networks need to be displayed".format(
             DisplayOptions.NETS,
             DisplayOptions.IPV4,
             DisplayOptions.IPV6))
