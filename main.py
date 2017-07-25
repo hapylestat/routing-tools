@@ -1,9 +1,8 @@
-
+from __future__ import print_function
 from apputils.net.curl import curl
 from apputils.core.config.main import Configuration
 from models import Networks
 import sys
-
 
 RIPE_BGP_STATUS_URL = "https://stat.ripe.net/data/bgp-state/data.json?resource={}"
 
@@ -92,12 +91,37 @@ def generate_exclude_lists(nets, include_optional=True, make_query=True):
     return net_names, prefixes_ipv4, prefixes_ipv6
 
 
+def cidr_to_mask_ipv4(bits):
+    cidr = int(bits)
+    mask = (0xffffffff >> (32 - cidr)) << (32 - cidr)
+    return (str((0xff000000 & mask) >> 24) + '.' +
+            str((0x00ff0000 & mask) >> 16) + '.' +
+            str((0x0000ff00 & mask) >> 8) + '.' +
+            str((0x000000ff & mask)))
+
+
+def networks_printer(networks, formatter):
+    # TODO support ipv6
+    if formatter:
+        for net in networks:
+            net_ip, net_cidr = net.split("/")
+            net_mask = cidr_to_mask_ipv4(net_cidr)
+            try:
+                print(formatter.format(net=net_ip, cidr=net_cidr, mask=net_mask))
+            except KeyError:
+                print("Wrong format, read manual pls")
+                sys.exit(-1)
+    else:
+        print("\n".join(networks))
+
+
 def main():
     conf = Configuration()
     nets = Networks(serialized_obj=conf.get_module_config("networks"))
 
     option = conf.get("default")
     inc_optional_nets = conf.get("optional", default="true", check_type=str) == "true"
+    formatter = conf.get("formatter", default="", check_type=str)
 
     if len(option) == 0 or option[0] == DisplayOptions.IPV4:
         display_mode = DisplayOptions.IPV4
@@ -106,8 +130,14 @@ def main():
     elif len(option) > 0 and option[0] == DisplayOptions.NETS:
         display_mode = DisplayOptions.NETS
     else:
-        print("Please use: {}, {}, {} to display respective information with --optional argument\
- to chose if optional networks need to be displayed".format(
+        print("""Please use: {}, {}, {} to display respective information with --optional argument\
+to chose if optional networks need to be displayed.\nAlso you can specify --formatter=\"FORMAT_STR\", to print \
+information formatted output. Only ipv4 supported.
+Formatter string must be in default python format syntax, variables that passed to format call:
+* net - network ip
+* mask - network mask
+* cidr - network mask in cidr notation
+""".format(
             DisplayOptions.NETS,
             DisplayOptions.IPV4,
             DisplayOptions.IPV6))
@@ -122,7 +152,7 @@ def main():
         sys.exit(-1)
 
     if display_mode == DisplayOptions.IPV4:
-        print("\n".join(prefixes_ipv4))
+        networks_printer(prefixes_ipv4, formatter)
     elif display_mode == DisplayOptions.IPV6:
         print("\n".join(prefixes_ipv6))
     elif display_mode == DisplayOptions.NETS:
