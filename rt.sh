@@ -3,30 +3,21 @@
 MYDIR=$(dirname ${BASH_SOURCE[0]})
 
 echo "Getting sub-nets list..."
-ROUTES=`python $MYDIR/main.py`
-GATE=2.3.2.1
+ROUTES=`python ${MYDIR}/main.py`
+GATE=$2
 
 
 do_route(){
  echo "Adding routes..."
- for r in $ROUTES; do
-   if [[ $r == *"/32"* ]]; then
-     route add -host $r gw $GATE 1>/dev/null 2>&1
-   else
-     route add -net $r gw $GATE 1>/dev/null 2>&1
-   fi
+ for r in ${ROUTES}; do
+   ip route add ${r} via ${GATE} 1>/dev/null 2>&1
  done
-
 }
 
 do_unroute(){
   echo "Removing routes..."
- for r in $ROUTES; do
-   if [[ $r == *"/32"* ]]; then
-     route del -host $r gw $GATE 1>/dev/null 2>&1
-   else
-     route del -net $r gw $GATE 1>/dev/null 2>&1
-   fi
+ for r in ${ROUTES}; do
+   ip route del ${r} via ${GATE} 1>/dev/null 2>&1
  done
 }
 
