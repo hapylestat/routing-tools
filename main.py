@@ -4,6 +4,7 @@ from apputils.core.config.main import Configuration
 from models import Networks
 from netaddr import IPNetwork
 import sys
+import itertools
 
 RIPE_BGP_STATUS_URL = "https://stat.ripe.net/data/bgp-state/data.json?resource={}"
 
@@ -17,7 +18,7 @@ class DisplayOptions(object):
 def fetch_ripe_info(as_list):
     """
     Downloading metadata from RIPE
-
+  
     :type as_list list[str]
     :rtype dict|None
     """
@@ -94,12 +95,20 @@ def generate_exclude_lists(nets, include_optional=True, make_query=True):
 
 def networks_printer(networks, formatter):
     if formatter:
+        counter = itertools.count(1)
         for net_str in networks:
             net_parsed = IPNetwork(net_str)
             try:
-                print(formatter.format(net=net_parsed.network, cidr=net_parsed.prefixlen, mask=net_parsed.netmask))
+                print(
+                    formatter.format(
+                        net=net_parsed.network,
+                        cidr=net_parsed.prefixlen,
+                        mask=net_parsed.netmask,
+                        count=next(counter)
+                    )
+                )
             except KeyError as e:
-                print("Wrong formatter key '{0}'. 'net', 'cidr', 'mask' are supported".format(e.message))
+                print("Wrong formatter key '{0}'. 'net', 'cidr', 'mask', 'count' are supported".format(e.message))
                 sys.exit(-1)
     else:
         print("\n".join(networks))
@@ -127,6 +136,7 @@ Formatter string must be in default python format syntax, variables that passed 
 * net - network ip
 * mask - network mask
 * cidr - network mask in cidr notation
+* count - route number
 """.format(
             DisplayOptions.NETS,
             DisplayOptions.IPV4,
