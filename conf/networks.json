@@ -43,6 +43,15 @@
             "AS30588"
           ],
       "nets": []
+    },
+    {
+      "name": "bdo_eu",
+      "optional": true,
+      "as_list": [
+            "AS15133",
+            "AS60781"
+          ],
+      "nets": []
     }
   ]
 }
