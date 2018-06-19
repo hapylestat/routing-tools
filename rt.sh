@@ -88,7 +88,12 @@ case $1 in
    do_unroute $2 $3
   ;;
   reset)
-   do_unroute
+   if [ -z $2 ] || [ -z $3 ]; then
+     echo "Please provide interface name and routing gw ip(remote point) as argument"
+     exit 1
+   fi
+
+   do_unroute $2 $3
    do_reset_cache
   ;;
   *)
