@@ -1,6 +1,6 @@
 check host block-workaround with address net.mail.ru every 10 cycles
-    start program = "/usr/bin/bash -c '/usr/srv/_bin/routing-tools/rt.sh start x.x.x.x'" with timeout 20 seconds
-    stop program = "/usr/bin/bash -c '/usr/srv/_bin/routing-tools/rt.sh stop x.x.x.x'" with timeout 15 seconds
+    start program = "/usr/bin/bash -c '/usr/srv/_bin/routing-tools/rt.sh start myif x.x.x.x'" with timeout 300 seconds
+    stop program = "/usr/bin/bash -c '/usr/srv/_bin/routing-tools/rt.sh stop myif x.x.x.x'" with timeout 300 seconds
     
     if failed icmp type echo count 5 with timeout 10 seconds then restart
     if 50 restarts within 50 cycles then timeout

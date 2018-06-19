@@ -1,6 +1,0 @@
-check host vpn with address 127.0.0.1
-    start program = "/usr/bin/bash -c '/usr/srv/_conf/vpnc/vpnc start; /usr/bin/systemctl restart named'" with timeout 20 seconds
-    stop program = "/usr/bin/bash -c '/usr/srv/_conf/vpnc/vpnc stop'" with timeout 15 seconds
-    
-    if failed icmp type echo count 5 with timeout 10 seconds then restart
-    if 50 restarts within 50 cycles then timeout
