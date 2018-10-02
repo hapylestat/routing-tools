@@ -54,7 +54,7 @@
       "nets": []
     },
     {
-      "name": "nexon - www.nexon.com and api.nexon.io",
+      "name": "nexon - www.nexon.com and api.nexon.io ui.vindictus.nexon.net vindictus.nexon.net",
       "optional": true,
       "as_list": [],
       "nets": [
@@ -63,7 +63,9 @@
         "52.43.123.35/32",
         "54.71.18.152/32",
         "52.88.86.2/32",
-        "54.149.20.76/32"
+        "54.149.20.76/32",
+        "34.217.190.134/32",
+        "52.32.197.161/32"
       ]
     }
   ]
