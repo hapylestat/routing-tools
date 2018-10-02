@@ -52,18 +52,6 @@
             "AS60781"
           ],
       "nets": []
-    },
-    {
-      "name": "nexon",
-      "optional": true,
-      "as_list": [
-          "AS26236",
-          "AS9958",
-          "AS57935",
-          "AS7567",
-          "AS9797"
-          ],
-      "nets": []
     }
   ]
 }
