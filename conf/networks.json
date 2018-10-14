@@ -2,70 +2,68 @@
   "items": [
     {
       "name": "vk",
-      "as_list": [
-        "AS47542", "AS47541", "AS28709"
-        ],
-      "nets": []
+      "items": [
+        "AS47542",
+        "AS47541",
+        "AS28709"
+      ]
     },
     {
       "name": "mail.ru games",
-      "as_list": [
+      "items": [
         "AS21051"
-      ],
-      "nets": []
+      ]
     },
     {
       "name": "mail.ru base",
-      "as_list": [
+      "items": [
         "AS47764"
-      ],
-      "nets": []
+      ]
     },
     {
       "name": "yandex",
-      "as_list": [
-        "AS13238"
-      ],
-      "nets": [
-        "104.17.67.104/32"
+      "items": [
+        "AS13238",
+        "104.17.67.104"
       ]
     },
     {
       "name": "kaspersky",
-      "as_list": [
+      "items": [
         "AS41983", "AS200107"
       ]
     },
     {
       "name": "ncsoft",
       "optional": true,
-      "as_list": [
+      "items": [
             "AS30588"
-          ],
-      "nets": []
+          ]
     },
     {
       "name": "bdo_eu",
       "optional": true,
-      "as_list": [
+      "items": [
             "AS15133",
             "AS60781"
-          ],
-      "nets": []
+          ]
     },
     {
-      "name": "nexon - www.nexon.com and api.nexon.io ui.vindictus.nexon.net vindictus.nexon.net",
+      "name": "nexon",
       "optional": true,
-      "as_list": [],
-      "nets": [
-        "34.213.147.234/32",
-        "35.166.117.69/32",
-        "52.43.123.35/32",
-        "54.71.18.152/32",
-        "52.88.86.2/32",
-        "54.149.20.76/32",
-        "34.217.190.134/32",
-        "52.32.197.161/32"
+      "items": [
+        "www.nexon.com",
+        "api.nexon.io",
+        "vindictus.nexon.net",
+        "ui.vindictus.nexon.net",
+        "34.213.147.234",
+        "35.166.117.69",
+        "52.43.123.35",
+        "54.71.18.152",
+        "52.88.86.2",
+        "54.149.20.76",
+        "34.217.190.134",
+        "52.32.197.161"
       ]
     }
   ]
