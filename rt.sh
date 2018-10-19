@@ -94,12 +94,12 @@ do_unroute(){
    exit 1
  fi
 
+ iptables -t mangle -D PREROUTING -m set --match-set ${APP} dst -j MARK --set-mark ${MYFWMARK} 1>/dev/null 2>&1
+ iptables -t mangle -D OUTPUT -m set --match-set ${APP} dst -j MARK --set-mark ${MYFWMARK} 1>/dev/null 2>&1
+
  ip rule del fwmark ${MYFWMARK} table ${MYTABLE} 1>/dev/null 2>&1
  ip route del prio 100 via ${ifIP} table ${MYTABLE} 1>/dev/null 2>&1
  ip route del default table ${MYTABLE} prio 100
-  
- iptables -t mangle -D PREROUTING -m set --match-set ${APP} dst -j MARK --set-mark ${MYFWMARK} 1>/dev/null 2>&1
- iptables -t mangle -D OUTPUT -m set --match-set ${APP} dst -j MARK --set-mark ${MYFWMARK} 1>/dev/null 2>&1
 }
 
 do_reset_cache(){
