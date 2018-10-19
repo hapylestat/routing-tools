@@ -1,0 +1,10 @@
+[Unit]
+Description=uablock auto-updater
+
+[Timer]
+OnCalendar=hourly
+Unit=uablock.service
+Persistent=true
+
+[Install]
+WantedBy=multi-user.target

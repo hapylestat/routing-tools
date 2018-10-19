@@ -1,0 +1,13 @@
+[Unit]
+Description=uablock auto-updater
+
+[Service]
+Type=oneshot
+User=root
+ExecStart=/usr/srv/_conf/routing_tools/uablock part-start nexon
+
+RemainAfterExit=no
+
+
+[Install]
+WantedBy=multi-user.target

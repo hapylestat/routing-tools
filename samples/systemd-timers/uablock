@@ -1,0 +1,13 @@
+#!/bin/bash
+
+pushd /usr/srv/_bin/routing-tools 1>/dev/null 2>&1
+
+if [ -z $1 ]; then
+  ./rt.sh
+  popd 1>/dev/null 2>&1
+  exit $?
+fi
+
+./rt.sh $1 <eth> <gw> $2
+# chg here ^^^^^^^^^^
+popd 1>/dev/null 2>&1
