@@ -117,6 +117,8 @@ def main():
   option = conf.get("default")
   inc_optional_nets = conf.get("optional", default="true", check_type=str) == "true"
   formatter = conf.get("formatter", default="", check_type=str)
+  nets_to_proccess = conf.get("nets", default="", check_type=str)
+  nets_to_proccess = [] if not nets_to_proccess else nets_to_proccess.split(",")
 
   if len(option) == 0 or option[0] == DisplayOptions.IPV4:
     display_mode = DisplayOptions.IPV4
@@ -139,7 +141,13 @@ Formatter string must be in default python format syntax, variables that passed 
       DisplayOptions.IPV6))
     sys.exit(-1)
 
-  net_names, prefixes_ipv4, prefixes_ipv6 = generate_exclude_lists(nets,
+  filtered_nets = [] if nets_to_proccess else nets.items
+  if nets_to_proccess:
+    for net in nets.items:
+      if net.name in nets_to_proccess:
+        filtered_nets.append(net)
+
+  net_names, prefixes_ipv4, prefixes_ipv6 = generate_exclude_lists(Networks(items=filtered_nets),
                                                                    include_optional=inc_optional_nets,
                                                                    make_query=display_mode != DisplayOptions.NETS)
 
