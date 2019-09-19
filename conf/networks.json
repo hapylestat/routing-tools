@@ -82,7 +82,9 @@
       "optional": false,
       "items": [
         "auth-api.astellia-mmo.com",
-        "launcher.astellia-mmo.com"
+        "launcher.astellia-mmo.com",
+        "astellia-mmo.com",
+        "forum.astellia-mmo.com"
       ]
     }
   ]
