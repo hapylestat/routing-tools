@@ -9,12 +9,13 @@
       ]
     },
     {
-      "name": "mail.ru games",
+      "name": "mail.ru_games",
       "items": [
         "AS21051",
         "AS205830",
         "auth.mail.ru"
-      ]
+      ],
+      "optional": true
     },
     {
       "name": "ria.ru",
@@ -23,10 +24,17 @@
       ]
     },
     {
-      "name": "mail.ru base",
+      "name": "mail.ru_base",
       "items": [
         "AS47764"
-      ]
+      ],
+      "optional": "true"
+    },
+    {
+     "name": "test",
+     "items": [
+      "217.69.141.254"
+     ]
     },
     {
       "name": "yandex",

@@ -1,0 +1,8 @@
+#!/bin/bash
+
+APP=uablock  # used for ipset table name
+MYTABLE=160
+MYFWMARK=0xaf
+
+DEV=vpn-darkDE
+IPROUTE=10.255.1.249

@@ -1,0 +1,8 @@
+#!/bin/bash
+
+APP=rublock  # used for ipset table name
+MYTABLE=162
+MYFWMARK=0x2c
+
+DEV=vpn-plexiRU
+IPROUTE=10.255.1.253
