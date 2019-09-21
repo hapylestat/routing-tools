@@ -84,6 +84,16 @@
         "34.217.190.134",
         "52.32.197.161"
       ]
+    },
+    {
+      "name": "astellia",
+      "optional": false,
+      "items": [
+        "auth-api.astellia-mmo.com",
+        "launcher.astellia-mmo.com",
+        "astellia-mmo.com",
+        "forum.astellia-mmo.com"
+      ]
     }
   ]
 }
