@@ -15,6 +15,19 @@ MYFWMARK=${MYFWMARK:-}
 DEV=${DEV:-}
 IPROUTE=${IPROUTE:-}
 
+create_ipset_restore() {
+  local rules=$1
+  if [ -z ${rules} ]; then 
+    local ROUTES=`python ${MYDIR}/main.py`
+  else 
+    local ROUTES=`python ${MYDIR}/main.py --nets="${rules}"`
+  fi
+
+  for r in ${ROUTES}; do
+   echo "add ${APP} ${r}\n"
+  done
+}
+
 
 do_custom_route(){
  local rules=$1
@@ -29,20 +42,14 @@ do_custom_route(){
 
  ipset create ${APP} hash:net 1>/dev/null 2>&1
 
- echo "Getting sub-nets list for ${rules}..."
- local ROUTES=`python ${MYDIR}/main.py --nets="${rules}"`
-
- echo  "Publishing networks to storage..."
- for r in ${ROUTES}; do
-  ipset add ${APP} ${r}
- done
+ echo "Getting sub-nets list for ${rules} and publishing them to the storage..."
+ echo -e $(create_ipset_restore ${rules}) | ipset restore -!
 
  iptables -t mangle -A PREROUTING -m set --match-set ${APP} dst -j MARK --set-mark ${MYFWMARK}
  iptables -t mangle -A OUTPUT -m set --match-set ${APP} dst -j MARK --set-mark ${MYFWMARK}
 
  ip rule add fwmark ${MYFWMARK} table ${MYTABLE}
  ip route add default via ${IPROUTE} dev ${DEV} table ${MYTABLE} prio 100
-
 
 
  # allow async routes to work properly
@@ -62,13 +69,8 @@ do_route(){
 
  ipset create ${APP} hash:net 1>/dev/null 2>&1
  if [ $? -eq 0 ]; then 
-  echo "Getting sub-nets list..."
-  local ROUTES=`python ${MYDIR}/main.py`
-  
-  echo  "Publishing networks to storage..."
-  for r in ${ROUTES}; do
-    ipset add ${APP} ${r}
-  done
+  echo "Getting sub-nets list and publishing routes to the storage..."
+  echo -e $(create_ipset_restore) | ipset restore -!
  else
   echo "Using cached routes (run rt.sh reset to update cache) ..".
  fi

@@ -40,7 +40,12 @@
       "name": "yandex",
       "items": [
         "AS13238",
-        "104.17.67.104"
+        "104.17.67.104",
+        "money.yandex.ru",
+        "passport.yandex.ru",
+        "paymentcard.yoomoney.ru",
+        "yoomoney.ru",
+        "3ds-gate.yamoney.ru"
       ]
     },
     {
@@ -75,24 +80,7 @@
         "api.nexon.io",
         "vindictus.nexon.net",
         "ui.vindictus.nexon.net",
-        "34.213.147.234",
-        "35.166.117.69",
-        "52.43.123.35",
-        "54.71.18.152",
-        "52.88.86.2",
-        "54.149.20.76",
-        "34.217.190.134",
-        "52.32.197.161"
-      ]
-    },
-    {
-      "name": "astellia",
-      "optional": false,
-      "items": [
-        "auth-api.astellia-mmo.com",
-        "launcher.astellia-mmo.com",
-        "astellia-mmo.com",
-        "forum.astellia-mmo.com"
+        "AS16509"
       ]
     }
   ]
