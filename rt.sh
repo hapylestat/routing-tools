@@ -18,9 +18,9 @@ IPROUTE=${IPROUTE:-}
 create_ipset_restore() {
   local rules=$1
   if [ -z ${rules} ]; then 
-    local ROUTES=`python ${MYDIR}/main.py`
+    local ROUTES=`python ${MYDIR}/main.py ipv4`
   else 
-    local ROUTES=`python ${MYDIR}/main.py --nets="${rules}"`
+    local ROUTES=`python ${MYDIR}/main.py ipv4 --nets="${rules}"`
   fi
 
   for r in ${ROUTES}; do
