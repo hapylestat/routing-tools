@@ -1,7 +1,7 @@
 import socket
 from contextlib import contextmanager
 
-from apputils.net.curl import curl
+from modules.apputils.curl import curl
 
 RIPE_BGP_STATUS_URL = "https://stat.ripe.net/data/bgp-state/data.json?resource={}"
 

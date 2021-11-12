@@ -28,7 +28,7 @@
       "items": [
         "AS47764"
       ],
-      "optional": "true"
+      "optional": true
     },
     {
      "name": "test",

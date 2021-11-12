@@ -1,12 +1,13 @@
+from typing import List
 
-from apputils.types.config import ConfigObject
-
-
-class NetworkItem(ConfigObject):
-  name = None
-  items = []
-  optional = False
+from modules.apputils.json2obj import SerializableObject
 
 
-class Networks(ConfigObject):
-  items = [NetworkItem]
+class NetworkItem(SerializableObject):
+  name: str = None
+  items:List[str] = []
+  optional: bool = False
+
+
+class Networks(SerializableObject):
+  items:List[NetworkItem] = []
